@@ -33,7 +33,7 @@ public class API_Explorer implements EntryPoint, MainEventHandler {
 	public void onEvent(MainEvent event) {
 		if (event.getEventMessage().equals("template_load_success")){
 			templates = templatemngr.getAllTemplates();
-			System.out.println("loaded "+templates.size()+ " api templates");
+			System.out.println("loaded "+templates.size()+ " api templates :-)");
 			ui.apimenu.fillMenu(templates);
 			return;
 		}

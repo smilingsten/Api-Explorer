@@ -1,0 +1,44 @@
+.centerpnl{
+	/*background-color: red;*/
+	
+	background-color: green;
+	width: 550px;
+	}
+.headertabs{
+	background-color: orange;
+	width: 450px;
+	
+	}
+.headerpnl{
+	background-color: grey;
+	margin: auto;
+		}
+.bodypnl{
+	background-color: brown;
+	margin: auto;
+		}
+.bodytabs{
+	background-color: purple;
+	width: 450px;
+	}
+.dockpnl{
+	background-color: #ff8080;
+	margin: auto;
+	}
+.toppnl{
+	margin: auto;
+	background-color: blue;
+	 
+    }
+.rootpnl{
+	text-align: center;
+	margin: auto;
+	background-color: red;
+	}
+
+.txtarea{
+	
+	background-color: yellow;
+	width: 400px;
+	}
+ 

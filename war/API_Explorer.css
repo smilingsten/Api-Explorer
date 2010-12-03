@@ -1,25 +1,36 @@
+.apimenu{
+	background-color: #9999ff;
+	}
 .centerpnl{
 	/*background-color: red;*/
 	
 	background-color: green;
-	width: 550px;
+	width: 700px;
+	}
+.hostbox{
+	width: 200px;
+	background-color: yellow;
+	}
+.pathbox{
+	width: 500px;
+	background-color: yellow;
 	}
 .headertabs{
 	background-color: orange;
-	width: 450px;
+	width: 700px;
 	
 	}
 .headerpnl{
 	background-color: grey;
-	margin: auto;
+/*	margin: auto;*/
 		}
 .bodypnl{
 	background-color: brown;
-	margin: auto;
+	/*	margin: auto;*/
 		}
 .bodytabs{
 	background-color: purple;
-	width: 450px;
+	width: 700px;
 	}
 .dockpnl{
 	background-color: #ff8080;
@@ -39,6 +50,6 @@
 .txtarea{
 	
 	background-color: yellow;
-	width: 400px;
+	width: 700px;
 	}
  

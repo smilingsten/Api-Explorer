@@ -3,31 +3,17 @@
 	<api_host>sts.idm.telekom.com</api_host>
 	
 	<api_method>
-		<method_name>testmethod</method_name>
-		<http_method_type>POST</http_method_type>
-		<rest_path>/somepath/bla/fasel</rest_path>
-		<request_headers>
-			<header>
-				<name>testheader1</name>
-				<value>Basic REPLACE_THIS_WITH_YOUR_BASE64_ENCODED_USERNAME_AND_PASSWORD</value></header>
-			<header>
-				<name>Accept2</name>
-				<value>dunno</value></header>
-		</request_headers>
-	</api_method>
-	
-	<api_method>
 		<method_name>getToken</method_name>
 		<http_method_type>GET</http_method_type>
 		<rest_path>/rest-v1/tokens/odg</rest_path>
 		<request_headers>
-			<header>
+			<header mandatory="true">
 				<name>Authorization</name>
 				<value>Basic REPLACE_THIS_WITH_YOUR_BASE64_ENCODED_USERNAME_AND_PASSWORD</value></header>
-			<header>
+			<header mandatory="true">
 				<name>Accept</name>
 				<value>YOUR_ANSWER_FORMAT (application/json (default); text/plain; text/xml)</value></header>
-			<header>
+			<header mandatory="false">
 				<name>Accept-Charset</name>
 				<value>UTF-8</value></header>
 		</request_headers>

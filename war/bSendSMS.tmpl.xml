@@ -3,11 +3,11 @@
 	<api_host>gateway.developer.telekom.com</api_host>
 
 	<api_method>
-		<method_name>SendSMS / FlashSMS</method_name>
+		<method_name>sendSMS / sendFlashSMS</method_name>
 		<http_method_type>POST</http_method_type>
 		<rest_path>/p3gw-mod-odg-sms/rest/ENVIRONMENT/sms</rest_path>
 		<request_headers>
-			<header>
+			<header mandatory="true">
 				<name>Authorization</name>
 				<value>TAuth realm="https://odg.t-online.de",tauth_token="YOURTOKEN"
 				</value>
@@ -17,12 +17,12 @@
 				<value>YOUR_ANSWER_FORMAT (application/json (default); text/plain;text/xml)</value>
 			</header>
 		</request_headers>
-		<post_paramters>
-			<parameter>
+		<post_parameters>
+			<parameter mandatory="true">
 				<name>number</name>
 				<value>015773995070</value>
 			</parameter>
-			<parameter>
+			<parameter mandatory="true">
 				<name>message</name>
 				<value>Hello World</value>
 			</parameter>
@@ -38,16 +38,16 @@
 				<name>account</name>
 				<value>none</value>
 			</parameter>
-		</post_paramters>
+		</post_parameters>
 	</api_method>
 
 	<api_method>
-		<method_name>Validation - GetKeyword</method_name>
+		<method_name>Validation - getKeyword</method_name>
 		<http_method_type>POST</http_method_type>
 		<rest_path>/p3gw-mod-odg-sms-validation/rest/ENVIRONMENT/send
 		</rest_path>
 		<request_headers>
-			<header>
+			<header mandatory="true">
 				<name>Authorization</name>
 				<value>TAuth realm="https://odg.t-online.de",tauth_token="YOURTOKEN"
 				</value>
@@ -58,9 +58,9 @@
 					text/xml)</value>
 			</header>
 		</request_headers>
-		<post_paramters>
+		<post_parameters>
 			<parameter>
-				<name>number</name>
+				<name mandatory="true">number</name>
 				<value>015773995070</value>
 			</parameter>
 			<parameter>
@@ -75,15 +75,15 @@
 				<name>account</name>
 				<value>none</value>
 			</parameter>
-		</post_paramters>
+		</post_parameters>
 	</api_method>
 	<api_method>
-		<method_name>Validation - Validate</method_name>
+		<method_name>Validation - validate</method_name>
 		<http_method_type>POST</http_method_type>
 		<rest_path>/p3gw-mod-odg-sms-validation/rest/ENVIRONMENT/validatednumbers/NUMBER
 		</rest_path>
 		<request_headers>
-			<header>
+			<header mandatory="true">
 				<name>Authorization</name>
 				<value>TAuth realm="https://odg.t-online.de",tauth_token="YOURTOKEN"
 				</value>
@@ -93,12 +93,12 @@
 				<value>YOUR_ANSWER_FORMAT (application/json (default); text/plain; text/xml)</value>
 			</header>
 		</request_headers>
-		<post_paramters>
-			<parameter>
+		<post_parameters>
+			<parameter mandatory="true">
 				<name>key</name>
 				<value>THEVALIDATIONKEYYOURECEIVED</value>
 			</parameter>
-		</post_paramters>
+		</post_parameters>
 	</api_method>
 
 </api_requesttemplate>

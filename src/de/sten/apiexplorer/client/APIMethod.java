@@ -5,31 +5,19 @@ import java.util.ArrayList;
 public class APIMethod {
 	
 	private String methodname, methodtype, methodpath;
-	private ArrayList<NameValuePair> headers;
-	private ArrayList<NameValuePair> bodyparameters;
+	private ArrayList<RequestParameter> parameters;
 	
 	public APIMethod() {
-		this.headers = new ArrayList<NameValuePair>();
-		this.bodyparameters = new ArrayList<NameValuePair>();
-	}
-	
-	public APIMethod(String methodname, String methodtype, String methodpath, ArrayList<NameValuePair> headers, ArrayList<NameValuePair> bodyparamters) {
-		this.methodname = methodname;
-		this.methodpath = methodpath;
-		this.methodtype = methodtype;
-		this.headers = headers;
-		this.bodyparameters = bodyparamters;
-	}
-	
-	public APIMethod(String methodname, String methodtype, String methodpath, ArrayList<NameValuePair> headers) {
-		this.methodname = methodname;
-		this.methodpath = methodpath;
-		this.methodtype = methodtype;
-		this.headers = headers;
-		this.bodyparameters = new ArrayList<NameValuePair>();
-		
+		this.parameters = new ArrayList<RequestParameter>();
 	}
 
+	public String getParameterValue(String parametername, boolean isHeader){
+		for (RequestParameter parameter : parameters) {
+			if ( (parameter.getName().equals(parametername)) && parameter.isHeaderParameter() == isHeader ) return parameter.getValue();
+		}
+		return "Error, Parameter not found";
+	}
+	
 	public String getMethodname() {
 		return methodname;
 	}
@@ -54,20 +42,13 @@ public class APIMethod {
 		this.methodpath = methodpath;
 	}
 
-	public ArrayList<NameValuePair> getHeaders() {
-		return headers;
+	public ArrayList<RequestParameter> getParameters() {
+		return parameters;
 	}
 
-	public void setHeaders(ArrayList<NameValuePair> headers) {
-		this.headers = headers;
+	public void setParameters(ArrayList<RequestParameter> parameters) {
+		this.parameters = parameters;
 	}
-
-	public ArrayList<NameValuePair> getBodyparameters() {
-		return bodyparameters;
-	}
-
-	public void setBodyparameters(ArrayList<NameValuePair> bodyparameters) {
-		this.bodyparameters = bodyparameters;
-	}
-
+	
+	
 }

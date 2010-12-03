@@ -1,16 +1,15 @@
 package de.sten.apiexplorer.client;
 
-import com.google.gwt.dom.client.Style.Unit;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DisclosurePanel;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.TabLayoutPanel;
 import com.google.gwt.user.client.ui.TabPanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
@@ -19,11 +18,15 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class UIBuilder {
 	
-	public UI buildUI(){
-		UI ui = new UI();
-		createElements(ui);
-		assembleUI(ui);
-		applyStyles(ui);
+	private SimpleEventBus eventbus;
+	UI ui;
+	public UI buildUI (SimpleEventBus eventbus){
+		this.eventbus = eventbus;
+		ui = new UI();
+		createElements();
+		assembleUI();
+		applyStyles();
+		addHandlers();
 		
 		return ui;
 	}
@@ -35,7 +38,7 @@ public class UIBuilder {
 	TabPanel headertabs;
 	TabPanel bodytabs;
 	DockPanel dockpnl;
-	private void createElements(UI ui){
+	private void createElements(){
 		
 		dockpnl = new DockPanel();
 		ui.rootpnl = new FlowPanel();
@@ -59,14 +62,27 @@ public class UIBuilder {
 		headertabs = new TabPanel();
 		bodytabs = new TabPanel();
 
-		ui.apimenu = new APIMenu();
+		ui.apimenu = new APIMenu(eventbus);
 	}
 	
-	private void applyStyles(UI ui){
+	private void addHandlers(){
+		ui.clearBtn.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				ui.clearAll();		
+			}
+		});
+	}
+	
+	private void applyStyles(){
 		centerpnl.setStyleName("centerpnl");
 		toppnl.setStyleName("toppnl");
+		ui.hostBox.setStyleName("hostbox");
+		ui.pathBox.setStyleName("pathbox");
 		Widget[] textareas = {ui.headerReqBox, ui.headerRespBox, ui.bodyReqBox, ui.bodyRespBox};
-		for (Widget widget : textareas) widget.setStyleName("txtarea");
+		for (Widget widget : textareas) {
+			widget.setStyleName("txtarea");
+			((TextArea) widget).setVisibleLines(10);
+		}
 		headertabs.setStyleName("headertabs");
 		headertabs.selectTab(0);
 		bodytabs.setStyleName("bodytabs");
@@ -79,11 +95,14 @@ public class UIBuilder {
 		dockpnl.setStyleName("dockpnl");
 		headerpnl.setOpen(true);
 		bodypnl.setOpen(true);
+		//ui.apimenu.setStyleName("apimenu");
+		ui.apimenu.addStyleName("apimenu");
+	
 		
 		ui.rootpnl.setStyleName("rootpnl");
 	}
 	
-	private void assembleUI(UI ui){
+	private void assembleUI(){
 		
 		toppnl.add(new Label("HTTP Method:"));
 		toppnl.add(ui.methodchsr);

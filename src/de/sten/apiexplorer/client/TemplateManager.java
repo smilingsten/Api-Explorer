@@ -7,18 +7,18 @@ import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
+import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
 
-public class TemplateManager implements HasHandlers{
+public class TemplateManager{
 	
 	//a list for all the request templates
 	private ArrayList<Request_Template> alltemplates;
-	private HandlerManager handlermngr;
+	private SimpleEventBus eventbus;
 	
-	public TemplateManager(MainEventHandler maineventhandler) {
-		handlermngr = new HandlerManager(this);
-		this.addMainEventHandler(maineventhandler);
+	public TemplateManager(SimpleEventBus eventbus) {
+		this.eventbus = eventbus;
 	}
 	
 	public ArrayList<Request_Template> getAllTemplates(){
@@ -32,21 +32,13 @@ public class TemplateManager implements HasHandlers{
 			public void onSuccess(ArrayList<String> result) {
 				TemplateParser parser = new TemplateParser();
 				alltemplates = parser.parseTemplates(result);
-				fireEvent(new MainEvent("template_load_success"));
+				eventbus.fireEvent(new MainEvent("TemplateManager", "template_load_success"));
 			}
 			public void onFailure(Throwable caught) {
-				fireEvent(new MainEvent("template_load_error\nMessage in caught was:\n"+caught.getMessage()));
+				eventbus.fireEvent(new MainEvent("TemplateManager", "template_load_error\nMessage in caught was:\n"+caught.getMessage()));
 			}
 		});
 	}
 
-	public void fireEvent(GwtEvent<?> event) {
-		handlermngr.fireEvent(event);
-		
-	}
-	
-	public HandlerRegistration addMainEventHandler(
-            MainEventHandler handler) {
-        return handlermngr.addHandler(MainEvent.TYPE, handler);
-    }
+
 }

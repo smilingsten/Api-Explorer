@@ -38,51 +38,56 @@ public class TemplateParser {
 		NodeList methodnodes = root.getElementsByTagName("api_method");
 		for (int i = 0; i< methodnodes.getLength(); i++){
 			//get method name, restpath and type
-			String methodname = ((Element) methodnodes.item(i)).getElementsByTagName("method_name").item(0).getFirstChild().getNodeValue();
-			String methodtype = ((Element) methodnodes.item(i)).getElementsByTagName("http_method_type").item(0).getFirstChild().getNodeValue();
-			String path = ((Element) methodnodes.item(i)).getElementsByTagName("rest_path").item(0).getFirstChild().getNodeValue();
+			Element currentmethodnode = ((Element) methodnodes.item(i));
+			String methodname = (currentmethodnode).getElementsByTagName("method_name").item(0).getFirstChild().getNodeValue();
+			String methodtype = (currentmethodnode).getElementsByTagName("http_method_type").item(0).getFirstChild().getNodeValue();
+			String path = (currentmethodnode).getElementsByTagName("rest_path").item(0).getFirstChild().getNodeValue();
 			
 			APIMethod method = new APIMethod();
 			method.setMethodname(methodname);
 			method.setMethodtype(methodtype);
 			method.setMethodpath(path);
-			
-			Element currentmethodnode = ((Element) methodnodes.item(i));	
-			method.setHeaders(readHeaders(currentmethodnode));
-			method.setBodyparameters(readParameters(currentmethodnode));		
+				
+			method.setParameters(readParameters(currentmethodnode));		
 			apimethods.add(method);
 		}
-		
 		return apimethods;
 	}
 	
-	private ArrayList<NameValuePair> readHeaders(Element methodnode){
-		//List for all headers of this method
-		ArrayList<NameValuePair> methodheaders = new ArrayList<NameValuePair>();
-		//loop over all request headers
+	private ArrayList<RequestParameter> readParameters(Element methodnode) {
+		ArrayList<RequestParameter> parameters = new ArrayList<RequestParameter>();
 		NodeList headernodes = methodnode.getElementsByTagName("header");
-		for (int j = 0; j< headernodes.getLength(); j++){
+		NodeList parameternodes = methodnode.getElementsByTagName("parameter");
+		for (int j = 0; j< (headernodes.getLength()+parameternodes.getLength()); j++){
+			
 			//get name and value
-			String headername = ((Element) headernodes.item(j)).getElementsByTagName("name").item(0).getFirstChild().getNodeValue();
-			String headervalue = ((Element) headernodes.item(j)).getElementsByTagName("value").item(0).getFirstChild().getNodeValue();
-			methodheaders.add(new NameValuePair(headername, headervalue));
+			Element currentitem;
+			boolean isHeader = false;
+			if (j<headernodes.getLength()){
+				currentitem = (Element) headernodes.item(j);
+				isHeader = true;
+			}
+			else currentitem = (Element) parameternodes.item(j-headernodes.getLength());
+			
+			String parametername = currentitem.getElementsByTagName("name").item(0).getFirstChild().getNodeValue();
+			String parametervalue = currentitem.getElementsByTagName("value").item(0).getFirstChild().getNodeValue();
+			boolean isMandatory = false;
+			if ( ((currentitem).getAttribute("mandatory") !=null) && ((currentitem).getAttribute("mandatory").equals("true") )  ) {		
+				isMandatory = true;
+			}
+			RequestParameter parameter = new RequestParameter();
+			parameter.setName(parametername);
+			parameter.setValue(parametervalue);
+			parameter.setForMethod(methodnode.getElementsByTagName("method_name").item(0).getFirstChild().getNodeValue());
+			parameter.setHeaderParameter(isHeader);
+			parameter.setMandatory(isMandatory);
+			
+			parameters.add(parameter);
+			System.out.println("added new paramter: "+parameter.getName()+": "+parameter.getValue()+"; "
+					+parameter.isHeaderParameter()+"; "+parameter.isMandatory());
 		}
-		return methodheaders;
 		
+		return parameters;
 	}
-	
-	private ArrayList<NameValuePair> readParameters(Element methodnode){
-		//List for all parameters of this method
-		ArrayList<NameValuePair> methodparameters = new ArrayList<NameValuePair>();
-		//loop over all post paramters
-		NodeList paramternodes = methodnode.getElementsByTagName("parameter");
-		for (int j = 0; j< paramternodes.getLength(); j++){
-			//get name and value
-			String parametername = ((Element) paramternodes.item(j)).getElementsByTagName("name").item(0).getFirstChild().getNodeValue();
-			String parametervalue = ((Element) paramternodes.item(j)).getElementsByTagName("value").item(0).getFirstChild().getNodeValue();
-			methodparameters.add(new NameValuePair(parametername, parametervalue));
-		}
-		return methodparameters;
-		
-	}
+
 }

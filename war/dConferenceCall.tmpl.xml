@@ -1,0 +1,66 @@
+<api_requesttemplate>
+	<api_name>ConferenceCall</api_name>
+	<api_host>gateway.developer.telekom.com</api_host>
+
+	<api_method>
+		<method_name>NewCall / NewCallSequenced</method_name>
+		<http_method_type>POST</http_method_type>
+		<rest_path>/p3gw-mod-odg-voicebutler/rest/ENVIRONMENT/call</rest_path>
+		<request_headers>
+			<header mandatory="true">
+				<name>Authorization</name>
+				<value>TAuth realm="https://odg.t-online.de",tauth_token="YOURTOKEN"
+				</value>
+			</header>
+			<header>
+				<name>Accept</name>
+				<value>YOUR_ANSWER_FORMAT (application/json (default); text/plain;text/xml)</value>
+			</header>
+		</request_headers>
+		<post_parameters>
+			<parameter mandatory="true">
+				<name>anumber</name>
+				<value>01701234567</value>
+			</parameter>
+			
+			<parameter mandatory="true">
+				<name>bnumber</name>
+				<value>+4917566655544</value>
+			</parameter>
+			
+			<parameter>
+				<name>expiration</name>
+				<value>600</value>
+			</parameter>
+			
+			<parameter>
+				<name>maxduration</name>
+				<value>3600</value>
+			</parameter>
+			
+			<parameter>
+				<name>maxwait</name>
+				<value>30</value>
+			</parameter>
+			
+			<parameter>
+				<name>aprivacy</name>
+				<value>false</value>
+			</parameter>
+			
+			<parameter>
+				<name>bprivacy</name>
+				<value>true</value>
+			</parameter>
+			
+			<parameter>
+				<name>account</name>
+				<value>none</value>
+			</parameter>
+			
+			</post_parameters>
+	</api_method>
+
+
+
+</api_requesttemplate>

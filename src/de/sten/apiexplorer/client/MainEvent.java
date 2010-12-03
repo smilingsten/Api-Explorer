@@ -7,10 +7,12 @@ public class MainEvent extends GwtEvent<MainEventHandler> {
 	
 	public static GwtEvent.Type<MainEventHandler> TYPE = new Type<MainEventHandler>();
 	
+	private String eventSource;
 	private String eventMessage;
 	
-	public MainEvent(String eventmessage) {
+	public MainEvent(String eventSource ,String eventmessage) {
 		
+		this.eventSource = eventSource;
 		this.eventMessage = eventmessage;
 	}
 	
@@ -24,6 +26,10 @@ public class MainEvent extends GwtEvent<MainEventHandler> {
 	}
 
 
+	public String getEventSource() {
+		return eventSource;
+	}
+	
 	public String getEventMessage() {
 		return eventMessage;
 	}

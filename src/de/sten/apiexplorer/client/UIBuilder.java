@@ -2,6 +2,7 @@ package de.sten.apiexplorer.client;
 
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DisclosurePanel;
@@ -13,6 +14,7 @@ import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TabPanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.ToggleButton;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -53,6 +55,7 @@ public class UIBuilder {
 		ui.headerRespBox = new TextArea();
 		ui.bodyReqBox = new RequestBox();
 		ui.bodyRespBox = new TextArea();
+		ui.b64btn = new Button("B64");
 		
 		toppnl = new HorizontalPanel();
 		centerpnl = new VerticalPanel();
@@ -63,12 +66,31 @@ public class UIBuilder {
 		bodytabs = new TabPanel();
 
 		ui.apimenu = new APIMenu(eventbus);
+		ui.b64menu = new Base64Dialog();
 	}
 	
 	private void addHandlers(){
 		ui.clearBtn.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				ui.clearAll();		
+			}
+		});
+		ui.goBtn.addClickHandler(new ClickHandler() {
+			
+			public void onClick(ClickEvent event) {
+				eventbus.fireEvent(new MainEvent("UI", "go"));
+				
+			}
+		});
+		
+		ui.b64btn.addClickHandler(new ClickHandler() {
+			
+			public void onClick(ClickEvent event) {
+				
+				ui.b64menu.show();
+				ui.b64menu.center();
+				
+				
 			}
 		});
 	}
@@ -128,10 +150,9 @@ public class UIBuilder {
 		dockpnl.add(toppnl, DockPanel.NORTH);
 		dockpnl.add(centerpnl, DockPanel.CENTER);
 		dockpnl.add(ui.apimenu, DockPanel.WEST);
+		dockpnl.add(ui.b64btn, DockPanel.EAST);
 		
 		ui.rootpnl.add(dockpnl);
-	//	ui.rootpnl.add(centerpnl);
-		//ui.rootpnl.add(ui.apimenu);
 	}
 
 }

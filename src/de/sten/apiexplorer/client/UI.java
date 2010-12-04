@@ -7,6 +7,7 @@ import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.ToggleButton;
 
 public class UI {
 	
@@ -22,6 +23,9 @@ public class UI {
 	 RequestBox bodyReqBox;
 	 TextArea bodyRespBox;
 	 APIMenu apimenu;
+	 Button b64btn;
+	 Base64Dialog b64menu;
+	 
 	 private APIMethod currentlySelectedApiMethod = null;
 	 
 	 
@@ -66,7 +70,6 @@ public class UI {
 		 for(RequestParameter parameter : method.getParameters()){
 			
 				if(parameter.isMandatory()) {
-					 System.out.println("mandatory param "+parameter.getName());
 					preselectParameter(method, parameter.getName(), parameter.isHeaderParameter());
 				}
 			}
@@ -111,6 +114,7 @@ public class UI {
 		 headerRespBox.setText("");
 		 bodyReqBox.setText("");
 		 bodyRespBox.setText("");
+		 currentlySelectedApiMethod = null;
 	 }
 	 
 	 private APIMethod extractMethodFromClickPath (String methodname, Request_Template api){

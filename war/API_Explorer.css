@@ -1,8 +1,34 @@
+.b64dialog{
+	text-align: center;
+	max-width: 470px;
+	
+	}
+.b64dialogVpnl{
+	/*background-color: #eeaa22;*/
+	width:  450px;
+	height: 300px;
+	
+	}
+.b64box{
+
+	/*background-color: #4455dd;*/
+	width: 400px;
+	
+	}
+.b64decoded{
+	
+	color: red;
+	max-width: 450px;	
+	
+	}
+.gwt-DialogBox .dialogContent { 
+background-color: #4455dd;
+
+	}
 .apimenu{
 	background-color: #9999ff;
 	}
 .centerpnl{
-	/*background-color: red;*/
 	
 	background-color: green;
 	width: 700px;
@@ -22,11 +48,9 @@
 	}
 .headerpnl{
 	background-color: grey;
-/*	margin: auto;*/
 		}
 .bodypnl{
 	background-color: brown;
-	/*	margin: auto;*/
 		}
 .bodytabs{
 	background-color: purple;

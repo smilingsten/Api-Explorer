@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.shared.SimpleEventBus;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.RootPanel;
 
 public class API_Explorer implements EntryPoint, MainEventHandler {
@@ -12,10 +11,12 @@ public class API_Explorer implements EntryPoint, MainEventHandler {
 	ArrayList<Request_Template> templates;
 	TemplateManager templatemngr;
 	UI ui;
+	RequestStringBuilder reqbuilder;
 	public void onModuleLoad() {
 		//create an eventbus to pass events around and add this class as a handler
 		SimpleEventBus eventbus = new SimpleEventBus();
 		eventbus.addHandler(MainEvent.TYPE, this);
+		reqbuilder = new RequestStringBuilder();
 		
 		//load api templates from server and save them for this instance
 		templatemngr = new TemplateManager(eventbus);
@@ -36,23 +37,33 @@ public class API_Explorer implements EntryPoint, MainEventHandler {
 	public void onEvent(MainEvent event) {
 		
 		if (event.getEventSource().equals("ApiMenu")){
-		//	System.out.println("--------------");
-			//System.out.println("ApiMenus says: "+event.getEventMessage());
 			ui.completeFormWithClickPath(event.getEventMessage(), templates);
 			
 		}
 		
 		else if (event.getEventSource().equals("TemplateManager")){
-		//	System.out.println("--------------");
-		//	System.out.println("Templatemanager says: ");
 			if (event.getEventMessage().equals("template_load_success")){
 				templates = templatemngr.getAllTemplates();
-			//	System.out.println("loaded "+templates.size()+ " api templates :-)");
 				ui.apimenu.fillMenu(templates);
 				return;
 			}
 				System.out.println(event.getEventMessage());
 				return;
+		}
+		if (event.getEventSource().equals("UI")){
+			
+			if (event.getEventMessage().equals("go")){
+				String method=ui.methodchsr.getItemText(ui.methodchsr.getSelectedIndex());
+				String host = ui.hostBox.getText();
+				String path = ui.pathBox.getText();
+				String headers = ui.headerReqBox.getText();
+				String bodyparams = ui.bodyReqBox.getText();
+				reqbuilder.buildRequestString(method, host, path, headers, bodyparams);
+				Base64Tool bt = new Base64Tool();
+				System.out.println("base64"+bt.encodeString("stennn\r"));
+				return;
+			}
+			
 		}
 		
 		

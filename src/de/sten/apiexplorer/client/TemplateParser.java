@@ -83,8 +83,6 @@ public class TemplateParser {
 			parameter.setMandatory(isMandatory);
 			
 			parameters.add(parameter);
-			System.out.println("added new paramter: "+parameter.getName()+": "+parameter.getValue()+"; "
-					+parameter.isHeaderParameter()+"; "+parameter.isMandatory());
 		}
 		
 		return parameters;

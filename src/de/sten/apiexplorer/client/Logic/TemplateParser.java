@@ -1,10 +1,14 @@
-package de.sten.apiexplorer.client;
+package de.sten.apiexplorer.client.Logic;
 import java.util.ArrayList;
 
 import com.google.gwt.xml.client.Document;
 import com.google.gwt.xml.client.Element;
 import com.google.gwt.xml.client.NodeList;
 import com.google.gwt.xml.client.XMLParser;
+
+import de.sten.apiexplorer.client.passiveObjects.APIMethod;
+import de.sten.apiexplorer.client.passiveObjects.RequestParameter;
+import de.sten.apiexplorer.client.passiveObjects.Request_Template;
 
 public class TemplateParser {
 	

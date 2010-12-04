@@ -6,6 +6,14 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.RootPanel;
 
+import de.sten.apiexplorer.client.Logic.MainEventHandler;
+import de.sten.apiexplorer.client.Logic.RequestStringBuilder;
+import de.sten.apiexplorer.client.Logic.TemplateManager;
+import de.sten.apiexplorer.client.UI.UI;
+import de.sten.apiexplorer.client.UI.UIBuilder;
+import de.sten.apiexplorer.client.passiveObjects.MainEvent;
+import de.sten.apiexplorer.client.passiveObjects.Request_Template;
+
 public class API_Explorer implements EntryPoint, MainEventHandler {
 
 	ArrayList<Request_Template> templates;
@@ -38,10 +46,11 @@ public class API_Explorer implements EntryPoint, MainEventHandler {
 		
 		if (event.getEventSource().equals("ApiMenu")){
 			ui.completeFormWithClickPath(event.getEventMessage(), templates);
+			return;
 			
 		}
 		
-		else if (event.getEventSource().equals("TemplateManager")){
+		 if (event.getEventSource().equals("TemplateManager")){
 			if (event.getEventMessage().equals("template_load_success")){
 				templates = templatemngr.getAllTemplates();
 				ui.apimenu.fillMenu(templates);
@@ -50,7 +59,7 @@ public class API_Explorer implements EntryPoint, MainEventHandler {
 				System.out.println(event.getEventMessage());
 				return;
 		}
-		if (event.getEventSource().equals("UI")){
+		 if (event.getEventSource().equals("UI")){
 			
 			if (event.getEventMessage().equals("go")){
 				String method=ui.methodchsr.getItemText(ui.methodchsr.getSelectedIndex());
@@ -59,18 +68,9 @@ public class API_Explorer implements EntryPoint, MainEventHandler {
 				String headers = ui.headerReqBox.getText();
 				String bodyparams = ui.bodyReqBox.getText();
 				reqbuilder.buildRequestString(method, host, path, headers, bodyparams);
-				Base64Tool bt = new Base64Tool();
-				System.out.println("base64"+bt.encodeString("stennn\r"));
 				return;
 			}
-			
 		}
-		
-		
-		
 	}
-	
-	
-	
 
 }

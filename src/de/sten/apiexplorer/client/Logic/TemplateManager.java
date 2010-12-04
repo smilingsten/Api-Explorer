@@ -1,4 +1,4 @@
-package de.sten.apiexplorer.client;
+package de.sten.apiexplorer.client.Logic;
 
 import java.util.ArrayList;
 
@@ -9,6 +9,9 @@ import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.HasHandlers;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.rpc.AsyncCallback;
+
+import de.sten.apiexplorer.client.passiveObjects.MainEvent;
+import de.sten.apiexplorer.client.passiveObjects.Request_Template;
 
 
 public class TemplateManager{

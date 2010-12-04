@@ -14,7 +14,7 @@ import java.util.Arrays;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
-import de.sten.apiexplorer.client.TemplateService;
+import de.sten.apiexplorer.client.Logic.TemplateService;
 
 @SuppressWarnings("serial")
 public class TemplateServiceImpl extends RemoteServiceServlet implements TemplateService {

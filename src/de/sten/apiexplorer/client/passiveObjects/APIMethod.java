@@ -1,4 +1,4 @@
-package de.sten.apiexplorer.client;
+package de.sten.apiexplorer.client.passiveObjects;
 
 import java.util.ArrayList;
 //describes a certain method of an api

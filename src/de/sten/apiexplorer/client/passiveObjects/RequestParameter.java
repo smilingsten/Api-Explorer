@@ -1,4 +1,4 @@
-package de.sten.apiexplorer.client;
+package de.sten.apiexplorer.client.passiveObjects;
 
 public class RequestParameter {
 	

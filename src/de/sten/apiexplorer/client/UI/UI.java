@@ -1,4 +1,4 @@
-package de.sten.apiexplorer.client;
+package de.sten.apiexplorer.client.UI;
 
 import java.util.ArrayList;
 
@@ -9,20 +9,24 @@ import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.ToggleButton;
 
+import de.sten.apiexplorer.client.passiveObjects.APIMethod;
+import de.sten.apiexplorer.client.passiveObjects.RequestParameter;
+import de.sten.apiexplorer.client.passiveObjects.Request_Template;
+
 public class UI {
 	
-	FlowPanel rootpnl;
+	public FlowPanel rootpnl;
 	
-	 ListBox methodchsr;
-	 TextBox hostBox;
-	 TextBox pathBox;
+	public ListBox methodchsr;
+	public TextBox hostBox;
+	public TextBox pathBox;
 	 Button goBtn;
 	 Button clearBtn;
-	 RequestBox headerReqBox;
+	 public RequestBox headerReqBox;
 	 TextArea headerRespBox;
-	 RequestBox bodyReqBox;
+	 public RequestBox bodyReqBox;
 	 TextArea bodyRespBox;
-	 APIMenu apimenu;
+	public APIMenu apimenu;
 	 Button b64btn;
 	 Base64Dialog b64menu;
 	 

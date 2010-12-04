@@ -1,6 +1,8 @@
-package de.sten.apiexplorer.client;
+package de.sten.apiexplorer.client.Logic;
 
 import com.google.gwt.event.shared.EventHandler;
+
+import de.sten.apiexplorer.client.passiveObjects.MainEvent;
 
 
 

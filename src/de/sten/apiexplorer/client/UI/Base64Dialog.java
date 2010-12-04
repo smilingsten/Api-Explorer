@@ -1,4 +1,4 @@
-package de.sten.apiexplorer.client;
+package de.sten.apiexplorer.client.UI;
 
 
 import com.google.gwt.event.dom.client.ChangeEvent;
@@ -17,6 +17,8 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.VerticalPanel;
+
+import de.sten.apiexplorer.client.Logic.Base64Tool;
 
 public class Base64Dialog extends DialogBox{
 
@@ -50,6 +52,7 @@ public class Base64Dialog extends DialogBox{
 		encode.setVisibleLines(6);
 		decode.setVisibleLines(6);
 		decode.addStyleName("b64box");
+		close.addStyleName("dialogclosebtn");
 	}
 
 	private void createElements() {

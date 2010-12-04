@@ -1,4 +1,4 @@
-package de.sten.apiexplorer.client;
+package de.sten.apiexplorer.client.UI;
 
 import java.util.ArrayList;
 
@@ -9,6 +9,11 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.DecoratedStackPanel;
 import com.google.gwt.user.client.ui.Tree;
 import com.google.gwt.user.client.ui.TreeItem;
+
+import de.sten.apiexplorer.client.passiveObjects.APIMethod;
+import de.sten.apiexplorer.client.passiveObjects.MainEvent;
+import de.sten.apiexplorer.client.passiveObjects.RequestParameter;
+import de.sten.apiexplorer.client.passiveObjects.Request_Template;
 
 public class APIMenu extends DecoratedStackPanel {
 	

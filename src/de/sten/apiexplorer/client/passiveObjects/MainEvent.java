@@ -1,6 +1,8 @@
-package de.sten.apiexplorer.client;
+package de.sten.apiexplorer.client.passiveObjects;
 
 import com.google.gwt.event.shared.GwtEvent;
+
+import de.sten.apiexplorer.client.Logic.MainEventHandler;
 
 
 public class MainEvent extends GwtEvent<MainEventHandler> {

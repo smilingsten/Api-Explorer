@@ -1,17 +1,18 @@
 .b64dialog{
 	text-align: center;
 	max-width: 470px;
+	background-color: #ff0077;
 	
 	}
 .b64dialogVpnl{
-	/*background-color: #eeaa22;*/
+	background-color: #00aaff;
 	width:  450px;
 	height: 300px;
 	
 	}
 .b64box{
 
-	/*background-color: #4455dd;*/
+	background-color: #4455dd;
 	width: 400px;
 	
 	}
@@ -20,6 +21,11 @@
 	color: red;
 	max-width: 450px;	
 	
+	}
+.dialogclosebtn{
+	background-color: #004422;
+	color: #aaaaff;
+	width: 111px;
 	}
 .gwt-DialogBox .dialogContent { 
 background-color: #4455dd;

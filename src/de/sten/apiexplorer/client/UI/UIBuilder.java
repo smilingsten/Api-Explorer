@@ -5,6 +5,7 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.GwtEvent;
 import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.Button;
+import com.google.gwt.user.client.ui.DecoratorPanel;
 import com.google.gwt.user.client.ui.DisclosurePanel;
 import com.google.gwt.user.client.ui.DockPanel;
 import com.google.gwt.user.client.ui.FlowPanel;
@@ -41,7 +42,9 @@ public class UIBuilder {
 	DisclosurePanel bodypnl;
 	TabPanel headertabs;
 	TabPanel bodytabs;
+	DisclosurePanel rawReqpnl;
 	DockPanel dockpnl;
+	DecoratorPanel decpnl;
 	private void createElements(){
 		
 		dockpnl = new DockPanel();
@@ -58,6 +61,8 @@ public class UIBuilder {
 		ui.bodyReqBox = new RequestBox();
 		ui.bodyRespBox = new TextArea();
 		ui.b64btn = new Button("B64");
+		ui.rawRequestBox = new TextArea();
+		rawReqpnl = new DisclosurePanel("Your raw HTTP request");
 		
 		toppnl = new HorizontalPanel();
 		centerpnl = new VerticalPanel();
@@ -69,6 +74,7 @@ public class UIBuilder {
 
 		ui.apimenu = new APIMenu(eventbus);
 		ui.b64menu = new Base64Dialog();
+	    decpnl = new DecoratorPanel();
 	}
 	
 	private void addHandlers(){
@@ -98,32 +104,35 @@ public class UIBuilder {
 	}
 	
 	private void applyStyles(){
-		centerpnl.setStyleName("centerpnl");
-		toppnl.setStyleName("toppnl");
-		ui.hostBox.setStyleName("hostbox");
-		ui.pathBox.setStyleName("pathbox");
+		centerpnl.addStyleName("centerpnl");
+		toppnl.addStyleName("toppnl");
+		ui.hostBox.addStyleName("hostbox");
+		ui.pathBox.addStyleName("pathbox");
 		Widget[] textareas = {ui.headerReqBox, ui.headerRespBox, ui.bodyReqBox, ui.bodyRespBox};
 		for (Widget widget : textareas) {
-			widget.setStyleName("txtarea");
+			widget.addStyleName("txtarea");
 			((TextArea) widget).setVisibleLines(10);
 		}
-		headertabs.setStyleName("headertabs");
+		headertabs.addStyleName("headertabs");
 		headertabs.selectTab(0);
-		bodytabs.setStyleName("bodytabs");
+		bodytabs.addStyleName("bodytabs");
 		bodytabs.selectTab(0);
 		
-		headerpnl.setStyleName("headerpnl");
+		headerpnl.addStyleName("headerpnl");
 		headerpnl.setAnimationEnabled(true);
-		bodypnl.setStyleName("bodypnl");
+		bodypnl.addStyleName("bodypnl");
 		bodypnl.setAnimationEnabled(true);
-		dockpnl.setStyleName("dockpnl");
+		dockpnl.addStyleName("dockpnl");
 		headerpnl.setOpen(true);
 		bodypnl.setOpen(true);
 		//ui.apimenu.setStyleName("apimenu");
 		ui.apimenu.addStyleName("apimenu");
-	
-		
-		ui.rootpnl.setStyleName("rootpnl");
+		ui.rawRequestBox.addStyleName("txtarea");
+		rawReqpnl.setAnimationEnabled(true);
+		rawReqpnl.addStyleName("rawreqpnl");
+		ui.rawRequestBox.setVisibleLines(8);
+		rawReqpnl.setOpen(true);
+		ui.rootpnl.addStyleName("rootpnl");
 	}
 	
 	private void assembleUI(){
@@ -148,6 +157,10 @@ public class UIBuilder {
 		centerpnl.add(headerpnl);
 		bodypnl.add(bodytabs);
 		centerpnl.add(bodypnl);
+		
+		rawReqpnl.add(ui.rawRequestBox);
+		decpnl.add(rawReqpnl);
+		//centerpnl.add(decpnl);
 		
 		dockpnl.add(toppnl, DockPanel.NORTH);
 		dockpnl.add(centerpnl, DockPanel.CENTER);

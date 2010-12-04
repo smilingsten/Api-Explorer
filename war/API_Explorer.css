@@ -1,3 +1,8 @@
+
+	
+.rawreqpnl{
+	
+}
 .b64dialog{
 	text-align: center;
 	max-width: 470px;
@@ -37,7 +42,7 @@ background-color: #4455dd;
 .centerpnl{
 	
 	background-color: green;
-	width: 700px;
+	width: 750px;
 	}
 .hostbox{
 	width: 200px;
@@ -49,7 +54,7 @@ background-color: #4455dd;
 	}
 .headertabs{
 	background-color: orange;
-	width: 700px;
+	width: 750px;
 	
 	}
 .headerpnl{
@@ -60,7 +65,7 @@ background-color: #4455dd;
 		}
 .bodytabs{
 	background-color: purple;
-	width: 700px;
+	width: 750px;
 	}
 .dockpnl{
 	background-color: #ff8080;

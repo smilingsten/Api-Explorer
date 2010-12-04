@@ -7,7 +7,7 @@ import com.google.gwt.event.shared.SimpleEventBus;
 import com.google.gwt.user.client.ui.RootPanel;
 
 import de.sten.apiexplorer.client.Logic.MainEventHandler;
-import de.sten.apiexplorer.client.Logic.RequestStringBuilder;
+import de.sten.apiexplorer.client.Logic.RequestWorker;
 import de.sten.apiexplorer.client.Logic.TemplateManager;
 import de.sten.apiexplorer.client.UI.UI;
 import de.sten.apiexplorer.client.UI.UIBuilder;
@@ -19,12 +19,12 @@ public class API_Explorer implements EntryPoint, MainEventHandler {
 	ArrayList<Request_Template> templates;
 	TemplateManager templatemngr;
 	UI ui;
-	RequestStringBuilder reqbuilder;
+	RequestWorker reqworker;
 	public void onModuleLoad() {
 		//create an eventbus to pass events around and add this class as a handler
 		SimpleEventBus eventbus = new SimpleEventBus();
 		eventbus.addHandler(MainEvent.TYPE, this);
-		reqbuilder = new RequestStringBuilder();
+		reqworker = new RequestWorker(eventbus);
 		
 		//load api templates from server and save them for this instance
 		templatemngr = new TemplateManager(eventbus);
@@ -37,7 +37,7 @@ public class API_Explorer implements EntryPoint, MainEventHandler {
 		//add the UI to the website
 		RootPanel rpnl = RootPanel.get("rootContainer");
 		rpnl.add(ui.rootpnl);
-	
+		System.out.println("LOADED...");	
 	}
 
 	
@@ -66,11 +66,13 @@ public class API_Explorer implements EntryPoint, MainEventHandler {
 				String host = ui.hostBox.getText();
 				String path = ui.pathBox.getText();
 				String headers = ui.headerReqBox.getText();
+				System.out.println("headersize is "+headers.length());
 				String bodyparams = ui.bodyReqBox.getText();
-				reqbuilder.buildRequestString(method, host, path, headers, bodyparams);
+				System.out.println("bodyparamsize is "+bodyparams.length());
+				
+				reqworker.doRequest(method, host, path, headers, bodyparams);
 				return;
 			}
 		}
 	}
-
 }

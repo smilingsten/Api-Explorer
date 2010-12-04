@@ -10,10 +10,18 @@
     <servlet-name>requestTemplateServlet</servlet-name>
     <servlet-class>de.sten.apiexplorer.server.TemplateServiceImpl</servlet-class>
   </servlet>
+          <servlet>
+    <servlet-name>requestServlet</servlet-name>
+    <servlet-class>de.sten.apiexplorer.server.RequestServiceImpl</servlet-class>
+  </servlet>
   
   <servlet-mapping>
     <servlet-name>requestTemplateServlet</servlet-name>
     <url-pattern>/api_explorer/requesttemplates</url-pattern>
+  </servlet-mapping>
+    <servlet-mapping>
+    <servlet-name>requestServlet</servlet-name>
+    <url-pattern>/api_explorer/doRequest</url-pattern>
   </servlet-mapping>
   
   <!-- Default page to serve -->
